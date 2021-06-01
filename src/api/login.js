@@ -14,5 +14,15 @@ export default {
             method:"post",
             data: userInfo
         })
+    },
+    getRefreshToken(token){
+
+        return request({
+            url:'/user/RefreshToken',
+            method:'get',
+            params:{
+                token
+            }
+        })
     }
 }

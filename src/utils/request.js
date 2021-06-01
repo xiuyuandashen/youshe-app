@@ -1,8 +1,13 @@
 import axios from 'axios'
 import {Toast} from 'vant'
+import login from '@/api/login'
+import store from '../store';
+
+
+window.isReresh = false;//用于判断是否刷新，不能少 防止陷入不限响应死循环
 
 const service = axios.create({
-    baseURL: 'http://localhost:8001',
+    baseURL: 'http://localhost:8002',
     timeout: 3000,
 });
 
@@ -17,28 +22,33 @@ service.interceptors.response.use(
       /**
        * code为非20000是抛错 可结合自己业务进行修改
        */
+       
+
       const res = response.data
       if (res.code !== 20000) {
         console.log(res)
-        Toast.fail('异常');  
-        // // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-        // if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        //   MessageBox.confirm(
-        //     '你已被登出，可以取消继续留在该页面，或者重新登录',
-        //     '确定登出',
-        //     {
-        //       confirmButtonText: '重新登录',
-        //       cancelButtonText: '取消',
-        //       type: 'warning'
-        //     }
-        //   ).then(() => {
-        //     store.dispatch('FedLogOut').then(() => {
-        //       location.reload() // 为了重新实例化vue-router对象 避免bug
-        //     })
-        //   })
-        // }
+        Toast.fail(res.message);
+        if(res.message=="token过期或未登录！"){
+          store.commit("SET_ISLOGIN",false);
+          router.push("/login")
+        }
+        
         return Promise.reject('error')
       } else {
+        // console.log("isLogin: ",store.state.isLogin)
+        if(store.state.isLogin){
+            if(!window.isReresh){
+              window.isReresh = true;
+              login.getRefreshToken(localStorage.getItem("token"))
+            .then(res=>{
+                //localStorage.setItem('token',res.data.token) ;
+                // console.log("刷新token：",res.data.token);
+                store.commit("SET_TOKEN",res.data.token);
+                window.isReresh = false;
+            })
+          }
+        }
+         
         return response.data
       }
     },

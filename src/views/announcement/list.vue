@@ -1,7 +1,9 @@
 <template>
   <div>
        <!-- link 模式，在右侧显示链接箭头 -->
-    <van-cell value="" v-for="item,index in list" :key="index" :id="item.id" is-link :to="'/container/announcement/content/'+ item.id" >
+    <van-loading size="24px" v-show="isLoding" >加载中...</van-loading>
+    <div v-show="isShow">
+        <van-cell value="" v-for="item,index in list" :key="index" :id="item.id" is-link :to="'/container/announcement/content/'+ item.id" >
         <!-- 使用 title 插槽来自定义标题 -->
         <template #title>
             <span class="custom-title">{{item.title}}</span>
@@ -9,6 +11,8 @@
         </template>
     </van-cell>
     <van-pagination v-if="datas.total >= datas.size" v-model="currentPage" :total-items="datas.total" :items-per-page="pageSize" @change="findAnnouncement"/>
+    </div>
+    
   </div>
 </template>
 
@@ -24,7 +28,9 @@ export default {
             datas:{
                 total:0
             },
-            pageSize:5
+            pageSize:5,
+            isShow :false,
+            isLoding:true
             
         }       
     },
@@ -37,6 +43,8 @@ export default {
                 // console.log(response.data)
                 this.datas = response.data
                 this.list =  response.data.announcementVos;
+                this.isLoding = false
+                this.isShow =true
             })
             
         }

@@ -85,6 +85,7 @@ export default {
                 this.$store.commit("SET_TOKEN",jwt);
                 this.$store.commit("SET_AUTHORITIES",res.data.authorities) 
                 this.$store.commit("SET_USER",res.data.user)
+                this.$store.commit("SET_ISLOGIN",true)
                 this.$router.push("/")
             })
         }

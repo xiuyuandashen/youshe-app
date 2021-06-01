@@ -1,6 +1,6 @@
 <template>
-<div>
-<van-row type="flex" justify="space-around" align="center">
+<div class="app-container">
+<van-row type="flex" justify="space-around" align="center" style="background-color:white;">
       <van-col span="2" style="text-align:center;"><van-icon name="wap-nav" style="font-size:30px" /></van-col> 
       <van-col offset="" span="18"> <van-search v-model="value" placeholder="请输入搜索关键词" /></van-col>
     </van-row>
@@ -11,10 +11,24 @@
             <img  :src="image" style="height: 100%;width: auto;"  />
         </van-swipe-item>
     </van-swipe>
+    <div class="call-item">
+        <van-grid square>
+        <van-grid-item v-for="value,index in values" :key="index"   :text="value.title" :to="value.path">
+            
+            <!-- <span style="font-size:13px">{{value.title}}</span> -->
+            <template #icon>
+                <svg-icon :icon-class="value.icon" style="font-size:24px"/>
+            </template>
+            <!-- <template #text>
+                <span style="color:red">{{value.title}}</span>
+            </template> -->
+        </van-grid-item>
+        </van-grid>
+    </div>
+    
 
-    <van-grid square>
-        <van-grid-item v-for="value in values" :key="value" icon="photo-o" text="文字" />
-</van-grid>
+    <h4>广告</h4>
+    <img v-for="img in imageList" v-lazy="img" style="width: 100%;height:auto" />
        
 </div>
   
@@ -28,13 +42,36 @@ export default {
                 'https://img01.yzcdn.cn/vant/apple-1.jpg',
                 'https://img01.yzcdn.cn/vant/apple-2.jpg',
             ],
-            values: 8,
-            value:""
+            values: [
+                {
+                    title:"报修管理",
+                    path:"",
+                    icon:"home"
+                    
+                },
+                {
+                    title:"我的家",
+                    path:"",
+                    icon:"home"
+                }
+            ],
+            value:"",
+            imageList: [
+        'https://img01.yzcdn.cn/vant/apple-1.jpg',
+        'https://img01.yzcdn.cn/vant/apple-2.jpg',
+      ],
         }
     }
 }
 </script>
 
 <style>
-
+    .call-item{
+        margin: 10px;
+        background-color: white;
+        /* border-radius: 30%; */
+    }
+    .app-container{
+        background-color: #f7f8fa;
+    }
 </style>

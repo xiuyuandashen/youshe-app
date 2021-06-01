@@ -1,8 +1,8 @@
 <template>
   <div>
+      
       <van-panel :title="announcement.title" :desc="announcement.gmtModified+' '+announcement.authorName" >
-          
-            <div style="padding:20px">{{announcement.content}}</div>
+            <div style="padding:20px" v-html="announcement.content"></div>
             
         </van-panel>
     </div>

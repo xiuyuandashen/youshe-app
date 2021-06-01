@@ -1,7 +1,7 @@
 <template>
   <div>
-    <transition name="slide-right">
-      <router-view></router-view>
+    <transition name="van-fade">
+        <router-view></router-view>
     </transition>
     <footer-nav></footer-nav>
   </div>

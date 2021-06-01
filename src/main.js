@@ -9,6 +9,17 @@ Vue.use(Vant);
 Vue.prototype.$axios = service
 Vue.config.productionTip = false
 service.defaults.baseURL = '/api'
+import { Lazyload } from 'vant';
+Vue.use(Lazyload);
+// Vue.use(Lazyload, {
+//   lazyComponent: true,
+// });
+
+
+import SvgIcon from '@/components/SvgIcon/index.vue'// svg组件
+import '@/components/SvgIcon/index.js'
+Vue.component('svg-icon', SvgIcon)
+
 
 new Vue({
   router,

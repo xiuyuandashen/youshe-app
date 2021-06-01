@@ -13,7 +13,8 @@ const store = new Vuex.Store({
             avatar:"https://img01.yzcdn.cn/vant/cat.jpeg"
         },
         token:"",
-        authorities:[]
+        authorities:[],
+        isLogin:false
     },
     mutations:{
         increment(state){
@@ -33,6 +34,13 @@ const store = new Vuex.Store({
             state.authorities = authorities;
             console.log("store authorities = ",authorities)
             localStorage.setItem("authorities", JSON.stringify(authorities))
+        },
+        SET_ISLOGIN(state,islogin){
+            state.isLogin = islogin;
+            if(!state.isLogin){
+                localStorage.removeItem("token")
+                state.token = ""
+            }
         }
     }
 })

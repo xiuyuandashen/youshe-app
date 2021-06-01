@@ -112,7 +112,7 @@ router.beforeEach((to, from, next) => {
     return ;
   }
   
-  if(localStorage.getItem("token")==null) {
+  if(store.state.isLogin==false && localStorage.getItem("token")==null) {
     next("/login")
     return ;
   }
