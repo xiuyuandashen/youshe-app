@@ -73,7 +73,7 @@ const routes = [
             name:"menu",
             component:()=>import("@/views/me/menu"),
             meta:{
-              permissions:["ROLE_USER"],
+              permissions:["ROLE_USER","ROLE_ADMIN","ROLE_BUILDINGADMIN"],
               name:"me"
             },
           }
@@ -95,6 +95,39 @@ const routes = [
     ]
   }
   ,
+  {
+    name:"报修管理",
+    path:"/repairs",
+    component:()=>import("@/views/repairs/index"),
+    children:[{
+      path:"list",
+      name:"报修列表",
+      component:()=>import("@/views/repairs/list")
+    },{
+      path:"table",
+      name:"添加报修记录",
+      component:()=>import("@/views/repairs/table")
+    }
+  ]
+
+  },
+  {
+    name:"健康打卡",
+    path:"/healthCard",
+    component:()=>import('@/views/healthCard/index'),
+    children:[
+      {
+        path:"list",
+        name:"列表",
+        component:()=>import('@/views/healthCard/list')
+
+      },{
+        path:"table",
+        name:"打卡",
+        component:()=>import('@/views/healthCard/table')
+      }
+    ]
+  }
   
 ]
 

@@ -13,22 +13,28 @@
     </van-swipe>
     <div class="call-item">
         <van-grid square>
-        <van-grid-item v-for="value,index in values" :key="index"   :text="value.title" :to="value.path">
+        
+            <van-grid-item v-for="(value,index) in values" :key="index"   :text="value.title" :to="value.path">
             
-            <!-- <span style="font-size:13px">{{value.title}}</span> -->
-            <template #icon>
-                <svg-icon :icon-class="value.icon" style="font-size:24px"/>
-            </template>
-            <!-- <template #text>
-                <span style="color:red">{{value.title}}</span>
-            </template> -->
-        </van-grid-item>
+                <!-- <span style="font-size:13px">{{value.title}}</span> -->
+                <template #icon>
+                    <svg-icon :icon-class="value.icon" style="font-size:24px;margin-bottom:7px"/>
+                </template>
+                <!-- <template #text>
+                    <span style="color:red">{{value.title}}</span>
+                </template> -->
+            </van-grid-item>
+        
+        
         </van-grid>
     </div>
     
-
-    <h4>广告</h4>
-    <img v-for="img in imageList" v-lazy="img" style="width: 100%;height:auto" />
+    <div class="call-item" style="padding: 2px 10px 0 10px;">
+        <h4 >广告</h4>
+        <img v-for="(img,index) in imageList" v-lazy="img" :key="index" style="width: 100%;height:auto;padding-bottom:10px" />
+    </div>
+    
+    
        
 </div>
   
@@ -45,14 +51,18 @@ export default {
             values: [
                 {
                     title:"报修管理",
-                    path:"",
-                    icon:"home"
+                    path:"/repairs/list",
+                    icon:"repairs"
                     
                 },
                 {
                     title:"我的家",
                     path:"",
                     icon:"home"
+                },{
+                    title:"健康打卡",
+                    path:"/healthCard/table",
+                    icon:"card"
                 }
             ],
             value:"",
@@ -73,5 +83,6 @@ export default {
     }
     .app-container{
         background-color: #f7f8fa;
+        /* min-height: calc( 100vw - 54px ); */
     }
 </style>

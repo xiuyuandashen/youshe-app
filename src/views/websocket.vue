@@ -17,7 +17,7 @@ export default {
     },
     methods: {
       initWebSocket(){ //初始化weosocket
-        const wsuri = "ws://localhost:8001/webSocket/"+this.user.id+'?Authorization='+localStorage.getItem("token");
+        const wsuri = "ws://localhost:8002/webSocket/"+this.user.id+'?Authorization='+localStorage.getItem("token");
         this.websock = new WebSocket(wsuri);
         this.websock.onmessage = this.websocketonmessage;
         this.websock.onopen = this.websocketonopen;
