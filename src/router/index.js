@@ -127,6 +127,17 @@ const routes = [
         component:()=>import('@/views/healthCard/table')
       }
     ]
+  },{
+    name:"我的家",
+    path:"/housing",
+    component:()=>import('@/views/housing/index'),
+    children:[
+      {
+        name:"列表",
+        path:"list",
+        component:()=>import('@/views/housing/list')
+      }
+    ]
   }
   
 ]

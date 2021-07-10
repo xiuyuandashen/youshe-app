@@ -60,7 +60,7 @@ export default {
             healthCard.getLastTimeCard(this.userId)
             .then(res=>{
                 // console.log("-- ---")
-                // console.log(res)
+                console.log(res)
                 if(res.data.item){
                     
                     this.healthCard = res.data.item

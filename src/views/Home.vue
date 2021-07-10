@@ -29,9 +29,13 @@
         </van-grid>
     </div>
     
-    <div class="call-item" style="padding: 2px 10px 0 10px;">
-        <h4 >广告</h4>
-        <img v-for="(img,index) in imageList" v-lazy="img" :key="index" style="width: 100%;height:auto;padding-bottom:10px" />
+    <div class="call-item2" style="">
+        
+        <div v-for="item,index in goods" :key="index" class="box">
+            <img :src="item.imgUrl" alt="" width="100%" style="">
+            <span style="margin-top:10px;padding: 3px;">{{item.title}}</span>
+            <span style="color:red;padding: 3px;">￥{{item.price}}</span>
+        </div>
     </div>
     
     
@@ -45,8 +49,8 @@ export default {
     data(){
         return {
              images: [
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/10/6354b79d6ba840e9a916a299e1ef9d43file.png',
+                'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/11/e63ee33e843747a6b127800da37103bffile.png',
             ],
             values: [
                 {
@@ -57,19 +61,51 @@ export default {
                 },
                 {
                     title:"我的家",
-                    path:"",
+                    path:"/housing/list",
                     icon:"home"
                 },{
                     title:"健康打卡",
                     path:"/healthCard/table",
                     icon:"card"
+                },{
+                    title:'更多',
+                    path:'',
+                    icon:'gengduo'
                 }
             ],
             value:"",
-            imageList: [
-        'https://img01.yzcdn.cn/vant/apple-1.jpg',
-        'https://img01.yzcdn.cn/vant/apple-2.jpg',
-      ],
+            goods: [
+                {
+                    title:"xiaomi/小米手表运动手环",
+                    imgUrl:'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/11/e63ee33e843747a6b127800da37103bffile.png',
+                    price:"999.9"
+
+                },
+                {
+                    title:"xiaomi/小米手表运动手环",
+                    imgUrl:'https://edu-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/03/27/d3421e72ee3543f0951cc42fe3b7727ffile.png',
+                    price:"999.9"
+
+                },
+                {
+                    title:"xiaomi/小米手表运动手环",
+                    imgUrl:'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/10/ad277ec900364d50862fd7cfbf1d9b6dfile.png',
+                    price:"999.9"
+
+                },
+                {
+                    title:"xiaomi/小米手表运动手环",
+                    imgUrl:'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/10/f222f639f953479ab68eb510b1387889file.png',
+                    price:"999.9"
+
+                },
+                {
+                    title:"xiaomi/小米手表运动手环",
+                    imgUrl:'https://youshe-xiuyuan.oss-cn-beijing.aliyuncs.com/2021/05/10/6354b79d6ba840e9a916a299e1ef9d43file.png',
+                    price:"999.9"
+
+                },
+            ],
         }
     }
 }
@@ -80,9 +116,37 @@ export default {
         margin: 10px;
         background-color: white;
         /* border-radius: 30%; */
+        
+
     }
     .app-container{
         background-color: #f7f8fa;
         /* min-height: calc( 100vw - 54px ); */
+    }
+    .call-item2{
+        /* display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around; */
+        display: grid;
+        grid-template-columns:45% 45%;
+        grid-column-gap: 5%;
+        margin: 0 10px 0 10px;
+        grid-row-gap: 10px;
+        justify-content:center;
+    }
+    .box{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        
+        background: white;
+       
+        border-radius: 10px;
+       
+        overflow:hidden;
+        
+        
     }
 </style>
